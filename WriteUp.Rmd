@@ -1,0 +1,41 @@
+---
+title: "Linear Model with Prediction"
+author: "Ezra Licciardi"
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+    toc_depth: 5
+date: "`r Sys.Date()`"    
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE,echo=FALSE}
+require(tidyverse)
+require(tigerstats)
+require(knitr)
+require(foreign)
+```
+
+```{r, eval=TRUE, warning=FALSE}
+url <- "https://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt"
+mydata <- read.csv(file=url,sep="",header=TRUE)  
+```
+
+# Introduction
+
+# Methods
+
+# Results
+
+## Graphical Results
+
+## Numerical Results
+
+## Inferential Results
+
+# Conclusion and Discussion

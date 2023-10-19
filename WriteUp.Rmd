@@ -40,7 +40,9 @@ $H_A$ There are statistically meaningful relation in the data.
 glimpse(mydata)
 ```
 
+Looking at the data provided they are all of data type: double meaning that they are continuous numerical data. This means that all problems in this write up will be of the numerical~numerical type.
 
+With the CandP helper file we will use scatter plots, correlation coefficients, and linear regression to explore the data.
 
 # Results
 

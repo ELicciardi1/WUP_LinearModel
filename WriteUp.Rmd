@@ -48,25 +48,43 @@ With the CandP helper file we will use scatter plots, correlation coefficients, 
 
 ## Graphical Results
 
+### Target and Predict
+```{r}
+target <- data.frame(ARM=88,GRIP=44)
+predict(model1,target,interval=c("prediction"))
+```
+
 ``` {r include = TRUE, echo = FALSE}
+yVarARM <- round(coef(lm(SIMS ~ ARM, data = mydata)), 3)[2]
+xVarARM <- round(coef(lm(SIMS ~ ARM, data = mydata)), 1)[1]
+
+yVarGRIP <- round(coef(lm(SIMS ~ GRIP, data = mydata)), 3)[2]
+xVarGRIP <- round(coef(lm(SIMS ~ GRIP, data = mydata)), 1)[1]
+
+yVarBOTH <- round(coef(lm(SIMS ~ ARM+GRIP, data = mydata)), 3)[2]
+xVarBOTH <- round(coef(lm(SIMS ~ ARM+GRIP, data = mydata)), 1)[1]
+
 ggplot(mydata, aes(x = ARM, y = SIMS)) +
-  geom_smooth(method=lm) + 
   geom_point() +
-  labs(x = "ARMS", y = "SIMS") +
-  ggtitle("Scatterplot of ARMS vs. SIMS")
+  labs(title = "SIMS ~ ARM",x = "ARM",y = "SIMS") + 
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  geom_smooth(method=lm) + 
+  geom_label(aes(x = 65, y = 3, label = paste("y = ", yVarARM, "x + ", xVarARM) ))
 
 
 ggplot(mydata, aes(x = GRIP, y = SIMS)) +
-  geom_smooth(method=lm) + 
   geom_point() +
-  labs(x = "ARMS", y = "SIMS") +
-  ggtitle("Scatterplot of ARMS vs. SIMS")
+  labs(title = "SIMS ~ GRIP",x = "GRIP",y = "SIMS") + 
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  geom_smooth(method=lm) + 
+  geom_label(aes(x = 75, y = 1.5, label = paste("y = ", yVarGRIP, "x + ", xVarGRIP) ))
 
 ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
-  geom_smooth(method=lm) + 
   geom_point() +
-  labs(x = "ARMS", y = "SIMS") +
-  ggtitle("Scatterplot of ARMS vs. SIMS")
+  labs(title = "SIMS ~ ARM + GRIP",x = "ARM + GRIP",y = "SIMS") + 
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  geom_smooth(method=lm) + 
+  geom_label(aes(x = 150, y = 2.5, label = paste("y = ", yVarBOTH, "x + ", xVarBOTH) ))
 ```
 
 
@@ -74,8 +92,13 @@ ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
 ## Numerical Results
 
 ```{r}
+print("AMR")
 cor(SIMS~ARM,data=mydata)
+print("____________")
+print("GRIP")
 cor(SIMS~GRIP,data=mydata)
+print("____________")
+print("ARM + GRIP")
 cor(SIMS~ARM+GRIP,data=mydata)
 ```
 

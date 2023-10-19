@@ -38,6 +38,9 @@ $H_A$ There are statistically meaningful relation in the data.
 
 ```{r}
 glimpse(mydata)
+model1 <- lm(SIMS~ARM,data=mydata)
+model2 <- lm(SIMS~GRIP,data=mydata)
+model3 <- lm(SIMS~ARM+GRIP,data=mydata)
 ```
 
 Looking at the data provided they are all of data type: double meaning that they are continuous numerical data. This means that all problems in this write up will be of the numerical~numerical type.
@@ -48,7 +51,32 @@ With the CandP helper file we will use scatter plots, correlation coefficients, 
 
 ## Graphical Results
 
+``` {r include = TRUE, echo = FALSE}
+ggplot(mydata, aes(x = ARM, y = SIMS)) +
+  geom_smooth(method=lm) + 
+  geom_point() +
+  labs(x = "ARMS", y = "SIMS") +
+  ggtitle("Scatterplot of ARMS vs. SIMS")
+
+
+ggplot(mydata, aes(x = GRIP, y = SIMS)) +
+  geom_smooth(method=lm) + 
+  geom_point() +
+  labs(x = "ARMS", y = "SIMS") +
+  ggtitle("Scatterplot of ARMS vs. SIMS")
+
+ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
+  geom_smooth(method=lm) + 
+  geom_point() +
+  labs(x = "ARMS", y = "SIMS") +
+  ggtitle("Scatterplot of ARMS vs. SIMS")
+```
+
+
+
 ## Numerical Results
+
+
 
 ## Inferential Results
 

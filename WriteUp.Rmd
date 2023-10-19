@@ -9,9 +9,6 @@ output:
 date: "`r Sys.Date()`"    
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ```{r include=FALSE,echo=FALSE}
 require(tidyverse)
@@ -83,5 +80,15 @@ cor(SIMS~ARM+GRIP,data=mydata)
 ```
 
 ## Inferential Results
+
+```{r}
+summary.lm(model1)
+print("----------------")
+summary.lm(model2)
+print("----------------")
+summary.lm(model3)
+print("----------------")
+anova(model1,model2,model3)
+```
 
 # Conclusion and Discussion

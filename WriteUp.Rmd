@@ -7,7 +7,6 @@ output:
     toc: true
     toc_depth: 5
 date: "`r Sys.Date()`"    
-    
 ---
 
 ```{r setup, include=FALSE}
@@ -28,7 +27,20 @@ mydata <- read.csv(file=url,sep="",header=TRUE)
 
 # Introduction
 
+We are looking at data procured from RVLS regarding "Physical Strength and Job Performance". We are exploring this data to see if any statistically significant correlations exist in the data or if the data is meaningfully related.
+
+$H_0$ There are no statistically meaningful relation in the data.
+
+$H_A$ There are statistically meaningful relation in the data.
+
+
 # Methods
+
+```{r}
+glimpse(mydata)
+```
+
+
 
 # Results
 

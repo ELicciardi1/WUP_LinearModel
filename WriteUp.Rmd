@@ -76,7 +76,11 @@ ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
 
 ## Numerical Results
 
-
+```{r}
+cor(SIMS~ARM,data=mydata)
+cor(SIMS~GRIP,data=mydata)
+cor(SIMS~ARM+GRIP,data=mydata)
+```
 
 ## Inferential Results
 

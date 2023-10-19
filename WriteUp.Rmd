@@ -51,40 +51,26 @@ With the CandP helper file we will use scatter plots, correlation coefficients, 
 ### Target and Predict
 ```{r}
 target <- data.frame(ARM=88,GRIP=44)
-predict(model1,target,interval=c("prediction"))
 ```
 
 ``` {r include = TRUE, echo = FALSE}
-yVarARM <- round(coef(lm(SIMS ~ ARM, data = mydata)), 3)[2]
-xVarARM <- round(coef(lm(SIMS ~ ARM, data = mydata)), 1)[1]
-
-yVarGRIP <- round(coef(lm(SIMS ~ GRIP, data = mydata)), 3)[2]
-xVarGRIP <- round(coef(lm(SIMS ~ GRIP, data = mydata)), 1)[1]
-
-yVarBOTH <- round(coef(lm(SIMS ~ ARM+GRIP, data = mydata)), 3)[2]
-xVarBOTH <- round(coef(lm(SIMS ~ ARM+GRIP, data = mydata)), 1)[1]
-
 ggplot(mydata, aes(x = ARM, y = SIMS)) +
   geom_point() +
   labs(title = "SIMS ~ ARM",x = "ARM",y = "SIMS") + 
   theme(plot.title = element_text(hjust = 0.5, size = 20)) +
-  geom_smooth(method=lm) + 
-  geom_label(aes(x = 65, y = 3, label = paste("y = ", yVarARM, "x + ", xVarARM) ))
-
+  geom_smooth(method=lm) 
 
 ggplot(mydata, aes(x = GRIP, y = SIMS)) +
   geom_point() +
   labs(title = "SIMS ~ GRIP",x = "GRIP",y = "SIMS") + 
   theme(plot.title = element_text(hjust = 0.5, size = 20)) +
-  geom_smooth(method=lm) + 
-  geom_label(aes(x = 75, y = 1.5, label = paste("y = ", yVarGRIP, "x + ", xVarGRIP) ))
+  geom_smooth(method=lm)
 
 ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
   geom_point() +
   labs(title = "SIMS ~ ARM + GRIP",x = "ARM + GRIP",y = "SIMS") + 
   theme(plot.title = element_text(hjust = 0.5, size = 20)) +
-  geom_smooth(method=lm) + 
-  geom_label(aes(x = 150, y = 2.5, label = paste("y = ", yVarBOTH, "x + ", xVarBOTH) ))
+  geom_smooth(method=lm) 
 ```
 
 
@@ -105,12 +91,24 @@ cor(SIMS~ARM+GRIP,data=mydata)
 ## Inferential Results
 
 ```{r}
+cat("Model 1")
 summary.lm(model1)
-print("----------------")
+predict(model1,target,interval=c("confidence"))
+print("Distance = 0.4365686")
+
+cat("\n\n\n\n","Model 2")
 summary.lm(model2)
-print("----------------")
+predict(model2,target,interval=c("confidence"))
+print("Distance = 1.260018.")
+
+cat("\n\n\n\n","Model 3")
 summary.lm(model3)
-print("----------------")
+predict(model3,target,interval=c("confidence"))
+print("Distance = 1.5383895")
+```
+
+
+```{r}
 anova(model1,model2,model3)
 ```
 

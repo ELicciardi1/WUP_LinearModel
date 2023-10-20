@@ -38,6 +38,7 @@ glimpse(mydata)
 model1 <- lm(SIMS~ARM,data=mydata)
 model2 <- lm(SIMS~GRIP,data=mydata)
 model3 <- lm(SIMS~ARM+GRIP,data=mydata)
+target <- data.frame(ARM=88,GRIP=44)
 ```
 
 Looking at the data provided they are all of data type: double meaning that they are continuous numerical data. This means that all problems in this write up will be of the numerical~numerical type.
@@ -47,11 +48,6 @@ With the CandP helper file we will use scatter plots, correlation coefficients, 
 # Results
 
 ## Graphical Results
-
-### Target and Predict
-```{r}
-target <- data.frame(ARM=88,GRIP=44)
-```
 
 ``` {r include = TRUE, echo = FALSE}
 ggplot(mydata, aes(x = ARM, y = SIMS)) +
@@ -106,7 +102,6 @@ summary.lm(model3)
 predict(model3,target,interval=c("confidence"))
 print("Distance = 1.5383895")
 ```
-
 
 ```{r}
 anova(model1,model2,model3)

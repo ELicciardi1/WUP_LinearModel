@@ -15,8 +15,6 @@ require(tidyverse)
 require(tigerstats)
 require(rgl)
 require(knitr)
-library(rgl)
-if(!require("rglwidget")) {install.packages("rglwidget");require("rglwidget")}
 ```
 
 ```{r, eval=TRUE, warning=FALSE}
@@ -80,13 +78,8 @@ ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
 ## Numerical Results
 
 ```{r}
-print("AMR")
 cor(SIMS~ARM,data=mydata)
-print("----------")
-print("GRIP")
 cor(SIMS~GRIP,data=mydata)
-print("----------")
-print("ARM + GRIP")
 cor(SIMS~ARM+GRIP,data=mydata)
 ```
 
@@ -96,17 +89,17 @@ cor(SIMS~ARM+GRIP,data=mydata)
 cat("Model 1")
 summary.lm(model1)
 predict(model1,target1,interval=c("prediction"))
-cat("\n4.8 = Difference")
+cat("4.8 = Difference")
 
-cat("\n\n\n\n","Model 2")
+cat("Model 2")
 summary.lm(model2)
 predict(model2,target1,interval=c("prediction"))
-cat("\n5.2 = Difference")
+cat("5.2 = Difference")
 
-cat("\n\n\n\n","Model 3")
+cat("Model 3")
 summary.lm(model3)
 predict(model3,target1,interval=c("prediction"))
-cat("\n4.6 = Difference")
+cat("4.6 = Difference")
 ```
 
 
@@ -119,8 +112,5 @@ cat("\n\n\n Model 1 & 3 ")
 anova(model1,model3)
 ```
 
-```{r}
-plot3d(mydata$ARM,mydata$GRIP,mydata$SIMS)
-```
 
 # Conclusion and Discussion

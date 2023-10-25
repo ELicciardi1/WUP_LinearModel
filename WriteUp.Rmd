@@ -73,7 +73,7 @@ ggplot(mydata, aes(x = ARM+GRIP, y = SIMS)) +
   geom_smooth(method=lm) 
 ```
 
-
+We can see here that all of the data is positively correlated at a glance but we do not know which of these is the best fit for our desired prediction.
 
 ## Numerical Results
 
@@ -82,6 +82,8 @@ cor(SIMS~ARM,data=mydata)
 cor(SIMS~GRIP,data=mydata)
 cor(SIMS~ARM+GRIP,data=mydata)
 ```
+
+Given these correlation coefficients we can show that the model 3 has the psrongest correlation, 1 being a one to one relationship 0.7 is the closest we have here.
 
 ## Inferential Results
 
@@ -102,6 +104,11 @@ predict(model3,target1,interval=c("prediction"))
 cat("4.6 = Difference")
 ```
 
+Here with our linear models of the data constructed from models 1 through 3 we have several metrics to see which model best fits our data. 
+
+We can compare Residual Standard Error which model 3 has the lowest at $\approx 1.1$, Adjusted R-Squared which is closest to one at $\approx0.5$
+
+Finally we constricted a target at an arbitrary point an interval prediction. We see that model three has the smallest difference in the lower and upper bounds of the prediction at $\approx4.6$.
 
 ```{r}
 cat("Model 1 & 2 ")

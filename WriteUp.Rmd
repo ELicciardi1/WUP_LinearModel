@@ -87,7 +87,7 @@ Given these correlation coefficients we can show that the model 3 has the psrong
 
 ## Inferential Results
 
-```{r}
+```{r include=TRUE, echo=FALSE}
 cat("Model 1")
 summary.lm(model1)
 predict(model1,target1,interval=c("prediction"))
@@ -110,7 +110,7 @@ We can compare Residual Standard Error which model 3 has the lowest at $\approx 
 
 Finally we constricted a target at an arbitrary point an interval prediction. We see that model three has the smallest difference in the lower and upper bounds of the prediction at $\approx4.6$.
 
-```{r}
+```{r include=TRUE, echo=FALSE}
 cat("Model 1 & 2 ")
 anova(model1,model2)
 cat("\n\n\n Model 2 & 3 ")
@@ -119,5 +119,10 @@ cat("\n\n\n Model 1 & 3 ")
 anova(model1,model3)
 ```
 
+After constructing a table of one way anova's we can see here that the Models comparing one and two has the highest P Value. This is not an absolute determinate but coupled with the information above is a strong indication that we are on the right track.
 
 # Conclusion and Discussion
+
+In conclusion we can reject the null hypothesis that there is no relations between the data. We have seen from the regression lines on the scatter plot that the data is overall positively correlation. The correlation coefficients are also closer to one than zero indicating that there is a relationship. In picking the best model we compared adjusted R squared values, residual standard errors as well as using the predict function to compare the width of the confidence interval. Model three was the best fit in all catagories and was once again compared with a one way anova where it has the lowest P-Value of the options.
+
+We can say that physical strength is a good indicator of job preformance in this study and that combining arm and grip strength is the best way to predict this from the data provided.
